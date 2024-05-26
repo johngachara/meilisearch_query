@@ -37,16 +37,16 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
 }));
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/shop2stock',Shop2StockRouter);
-app.use('/search',searchRouter);
-app.use('/search2',search2)
-app.use('/update',updateRouter);
-app.use('/update2',updateRouter2);
-app.use('/register',registerRouter);
+app.use('/users',auth, usersRouter);
+app.use('/shop2stock',auth,Shop2StockRouter);
+app.use('/search',auth,searchRouter);
+app.use('/search2',auth,search2)
+app.use('/update',auth,updateRouter);
+app.use('/update2',auth,updateRouter2);
+app.use('/register',auth,registerRouter);
 app.use('/authenticate',authRouter)
-app.use('/delete',deleteRouter)
-app.use('/delete2',deleteRouter2)
+app.use('/delete',auth,deleteRouter)
+app.use('/delete2',auth,deleteRouter2)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
