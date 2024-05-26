@@ -17,6 +17,7 @@ var deleteRouter2 = require('./routes/delete2');
 let Connect = require("./config/db")
 var auth = require('./auth/auth')
 Connect()
+const cors = require('cors')
 require('dotenv').config();
 var app = express();
 const bodyParser = require('body-parser');
@@ -30,7 +31,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(cors({
+  origin:"*", // Specify allowed origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
+}));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/shop2stock',Shop2StockRouter);
