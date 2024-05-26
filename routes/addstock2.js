@@ -18,6 +18,14 @@ const client = new MeiliSearch({
     }
 })();
 
+router.use((req,res,next) => {
+    const {product_name} = req.body;
+    for(let key in product_name){
+        product_name[key] = product_name[key].trim();
+    }
+    next()
+})
+
 /* POST data to MeiliSearch index */
 router.post(
     '/',
@@ -46,7 +54,7 @@ router.post(
             }
 
             const checkProduct = await client.index('Shop2Stock').search('',{
-                filter : `product_name = ${data.product_name}`,
+                filter : `product_name = "${data.product_name}"`,
             })
             if (checkProduct.hits.length > 0) {
                 return res.status(409).json({ error: 'Document with the same name already exists' });
@@ -59,6 +67,7 @@ router.post(
                     product_name: data.product_name,
                     quantity: data.quantity,
                     price: data.price,
+                    shop : "Shop2"
                 },
             ]);
 
