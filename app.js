@@ -39,7 +39,7 @@ app.use(cors({
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/shop2stock',Shop2StockRouter);
-app.use('/search',auth,searchRouter);
+app.use('/search',searchRouter);
 app.use('/search2',search2)
 app.use('/update',updateRouter);
 app.use('/update2',updateRouter2);
