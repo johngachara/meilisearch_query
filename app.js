@@ -17,7 +17,6 @@ var deleteRouter2 = require('./routes/delete2');
 let Connect = require("./config/db")
 var auth = require('./auth/auth')
 Connect()
-//s
 const cors = require('cors')
 require('dotenv').config();
 var app = express();
