@@ -39,8 +39,8 @@ app.use(cors({
 app.use('/', indexRouter);
 app.use('/users',auth, usersRouter);
 app.use('/shop2stock',auth,Shop2StockRouter);
-app.use('/search',auth,searchRouter);
-app.use('/search2',auth,search2)
+app.use('/search',searchRouter);
+app.use('/search2',search2)
 app.use('/update',auth,updateRouter);
 app.use('/update2',auth,updateRouter2);
 app.use('/register',auth,registerRouter);
