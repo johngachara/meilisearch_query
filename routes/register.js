@@ -31,9 +31,8 @@ router.post('/',
         if (user) {
             return res.status(400).json({ msg: 'User already exists' });
         }
-        if(!email.endsWith("@gmail.com")) {
-            return res.status(400).json({ msg: 'Please enter a valid email address' });
-        }
+
+
         user = new User({
             username,
             email,

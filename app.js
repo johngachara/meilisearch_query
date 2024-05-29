@@ -14,6 +14,7 @@ var registerRouter = require('./routes/register');
 var authRouter = require('./routes/authenticate');
 var deleteRouter = require('./routes/delete')
 var deleteRouter2 = require('./routes/delete2');
+var deleteAll = require('./routes/deleteall');
 let Connect = require("./config/db")
 var auth = require('./auth/auth')
 Connect()
@@ -43,10 +44,11 @@ app.use('/search',searchRouter);
 app.use('/search2',search2)
 app.use('/update',auth,updateRouter);
 app.use('/update2',auth,updateRouter2);
-app.use('/register',auth,registerRouter);
+app.use('/register',registerRouter);
 app.use('/authenticate',authRouter)
 app.use('/delete',auth,deleteRouter)
 app.use('/delete2',auth,deleteRouter2)
+app.use('/deleteall',auth,deleteAll)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

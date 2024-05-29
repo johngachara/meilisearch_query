@@ -12,7 +12,7 @@ const client = new MeiliSearch({
 // Initial setup: Update filterable attributes for the index (should be done once, not on each request)
 (async () => {
     try {
-        await client.index('Shop2Stock').updateFilterableAttributes(['id','product_name']);
+        await client.index('Shop2Stock').updateFilterableAttributes(['id']);
     } catch (error) {
         console.error('Error updating filterable attributes:', error);
     }
@@ -53,12 +53,6 @@ router.post(
                 return res.status(409).json({ error: 'Document with the same ID already exists' });
             }
 
-            const checkProduct = await client.index('Shop2Stock').search('',{
-                filter : `product_name = "${data.product_name}"`,
-            })
-            if (checkProduct.hits.length > 0) {
-                return res.status(409).json({ error: 'Document with the same name already exists' });
-            }
 
             // Add the document to the index
             const response = await client.index('Shop2Stock').addDocuments([
