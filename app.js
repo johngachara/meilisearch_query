@@ -44,7 +44,7 @@ app.use('/search',searchRouter);
 app.use('/search2',search2)
 app.use('/update',auth,updateRouter);
 app.use('/update2',auth,updateRouter2);
-app.use('/register',registerRouter);
+app.use('/register',auth,registerRouter);
 app.use('/authenticate',authRouter)
 app.use('/delete',auth,deleteRouter)
 app.use('/delete2',auth,deleteRouter2)
